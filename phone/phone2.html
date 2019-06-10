@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--头部和底部文字排版-->
+    <link rel="stylesheet" href="static/css/global_66c7309.css" />
+    <!--图形排版-->
+    <!--<link rel="stylesheet" href="static/css/smartrestaurant_2e1c514.css"/>-->
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+    .nav{
+        /*background: #0c0c0c;*/
+        opacity: 0.8;
+        width: 100%;
+        position: absolute;
+        height: 50px;
+        border-bottom: 1px solid#3d3d3d;
+        z-index: 999;
+    }
+    a.as {
+        float: left;
+        width: 30%;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+    .ab {
+        float: right;
+        position: relative;
+        top: 10px;
+        font-size: 20px;
+        color: #fff;
+        right: 10px;
+    }
+    .ab a {
+        position: relative;
+        right: 10px;
+    }
+
+
+    .list1{
+        font-size: 12px;
+        color: #666;
+    }
+    .list1 ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid#ececec;
+        height: 50px;
+        width: 100%;
+    }
+    .list1 ul li{
+        float: left;
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .active{
+        border-bottom: 2px solid#19bbff;
+    }
+
+    .footer{
+        background: #0a0a0a;
+        height: 200px;
+        color: #929292;
+    }
+    .footer ul{
+        margin-top: 80px;
+        padding: 0;
+    }
+    .footer li {
+        height: 30px;
+        width: 80%;
+        margin: 0 auto;
+        list-style: none;
+        border-bottom: 1px solid#444444;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .list2{
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background: #222327;
+        display: none
+    }
+    .list2 ul{
+        margin: 0;
+        padding: 60px 20px 0px 0px;
+        color: #e1e1e2;
+        float: left;
+        width: 100%;
+    }
+    .list2 ul li{
+        height: 50px;
+        line-height: 50px;
+        padding-left: 10px;
+        border-bottom: 1px solid#333333;
+    }
+
+
+    .btns {
+        position: absolute;
+        width: 90%;
+        bottom: 10px;
+        height: 50px;
+        left: 15px;
+    }
+    .btns span {
+        width: 150px;
+        float: left;
+        height: 35px;
+        background: #3e414e;
+        text-align: center;
+        color: #fff;
+        line-height: 35px;
+    }
+    .cons{
+        background: #fafafa;
+        display: none;
+    }
+
+
+    .font{
+       text-align: center;
+        font-size: 16px;
+    }
+
+    .act{display: block}
+    .lis{display: none}
+</style>
+<body>
+
+<!--nav-->
+<div class="nav">
+    <a href="#" class="as"><img style="width: 100%" src="https://open.iot.10086.cn/wap/web/static/img/logo.855f28a.png"></a>
+    <div class="ab">
+        <a href="#"><span class="glyphicon glyphicon-user"></span></a>
+        <span class="glyphicon glyphicon-menu-hamburger ico"></span>
+    </div>
+</div>
+<!--logo-->
+<div class="logo">
+    <img style="width: 100%" src="https://open.iot.10086.cn/wap/web/static/img/smartrestaurant.5ae9a40.png" alt="">
+    <span class="hiden" style="position: absolute;top: 100px;z-index: 999;color: #fff;font-size: 22px;left: 10px;">智慧餐厅解决方案</span>
+</div>
+<!--list1 内容1-->
+<div class="list1">
+<ul class="tab">
+    <li class="tabs active">大智产品</li>
+    <li class="tabs">网站定制</li>
+    <li class="tabs">微信定制</li>
+    <li class="tabs">移动App</li>
+</ul>
+    <p></p>
+    <div style="width: 80%;margin: 0 auto">
+        <div style="display: block" class="lis">
+            <p class="font">考核系统</p><img style="width: 100%" src="https://www.linyidz.cn/Public/img/5b1fb006dd3ca.jpg">
+        </div>
+        <div class="lis">
+            <p class="font">员工考核系统</p><img style="width: 100%" src="https://www.linyidz.cn/Public/img/5b1faff6e682e.jpg">
+        </div>
+        <div class="lis"></div>
+        <div class="lis"></div>
+    </div>
+</div>
+<!--底部-->
+<div class="footer hiden">
+    <ul style="list-style: none">
+        <li><span class="glyphicon glyphicon-earphone"></span>电话资讯 <span>4001-100-866 转 3</span></li>
+        <li>QQ群 <span>666666</span></li>
+        <li>产业合作 <span>www.dazhi.com</span></li>
+    </ul>
+</div>
+
+
+
+<!--点击按钮展开内容页-->
+<div class="list2">
+    <ul style="color: #fff;list-style: none">
+        <li>首页</li>
+        <li>产品服务<span class="glyphicon glyphicon glyphicon-chevron-right" style="float: right;line-height: 50px"></span></li>
+        <li>解决方案<span class="glyphicon glyphicon glyphicon-chevron-right" style="float: right;line-height: 50px"></span></li>
+        <li>开发文档<span class="glyphicon glyphicon glyphicon-chevron-right" style="float: right;line-height: 50px"></span></li>
+        <li>物联工厂<span class="glyphicon glyphicon glyphicon-chevron-right" style="float: right;line-height: 50px"></span></li>
+        <li>生态市场<span class="glyphicon glyphicon glyphicon-chevron-right" style="float: right;line-height: 50px"></span></li>
+    </ul>
+    <div class="btns">
+        <span>登陆</span>
+        <span style="float: right;background: #19bbff">注册</span>
+    </div>
+</div>
+
+
+</body>
+<script>
+
+    //top按钮
+    $(".glyphicon-menu-hamburger").click(function () {
+        var ico = $(".ico");
+        if ($(".list2").css('display')=='none'){
+            $(".list2").show();
+            $(".hiden").hide();
+            ico.addClass('glyphicon-remove');ico.removeClass('glyphicon-menu-hamburger');
+        }else{
+            $(".list2").hide();
+            $(".hiden").show();
+            ico.removeClass('glyphicon-remove');ico.addClass('glyphicon-menu-hamburger');
+        }
+    })
+
+    $(".tabs").mouseover(function () {
+        $(".tabs").removeClass("active"); //全部删掉选定样式
+        $(this).addClass("active");
+        var indexs = $(this).index();
+
+        $(".lis").each(function () {
+            $(this).index()==indexs? $(this).show():$(this).hide();
+        })
+    });
+</script>
+</html>

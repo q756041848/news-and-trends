@@ -1,0 +1,48 @@
+{include file="newslist/header"/}
+<!--手机端跳转链接-->
+<input type="hidden" id="url" value="{:url('phdetail')}?id={$id}">
+<body>
+<!--Nav-->
+    <div class="header" style="background: #15171e;">
+        <div class="header-body">
+            <a href="/" class="header-logo"></a>
+            {include file="common/head"/}
+        </div>
+    </div>
+<!--Nav-->
+
+<!--body-->
+    <div class="information clearfix">
+        <!--左侧内容-->
+        <div class="information-left">
+            <div class="information-list-box" style="border: none">
+                {volist name="$content" id="b" key="k"}
+                    <p style="color: #999"><a style="color: #999" href="{:url('/')}">大智</a> > <a style="color: #999" href="{:url('newslist/index')}">新闻列表</a> > {$b.title}</p>
+                    <h3>{$b.title}</h3>
+                    <p><span style="color: #999;float: left">{:date('Y-m-d:h:i:s',$b.updatetime)}</span><span style="color: #999;float: right">分享至:</span></p><br>
+                    <div style="font-size: 16px;text-indent:25px">{$b.content}</div>
+                {/volist}
+            </div>
+        </div>
+
+        <!--右侧内容-->
+        <div class="information-right">
+            <!--时光轴-->
+            <div class="information-news">{include file="newslist/timelist"/}</div>
+        </div>
+    </div>
+<!--body-->
+
+<!--footer-->
+{include file="common/foot"/}
+</body>
+<script>
+    //<!--检测web 手机-->
+    $(document).ready(function() {
+        if($(window).width() <= 980) {
+            //小于500则跳转到手机页面
+            window.location.href= $("#url").val();
+        }
+    });
+</script>
+</html>

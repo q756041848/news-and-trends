@@ -1,0 +1,172 @@
+﻿{include file="newslist/header"/}
+<!--手机端跳转链接-->
+<input type="hidden" id="url" value="{:url('newslist/phone')}">
+<body>
+<!--Nav-->
+    <div class="header" style="background: #15171e;">
+        <div class="header-body">
+            <a href="/" class="header-logo"></a>
+            {include file="common/head"/}
+        </div>
+    </div>
+<!--Nav-->
+
+<!--body-->
+    <div class="information clearfix">
+        <!--左侧列表-->
+        <div class="information-left">
+            <!--banner容器-->
+            <div class="information-left-header">
+                <!--顶部-单-banner大图-->
+                 <a class="information-bg" href="{:url('we/about')}" style="background: url('https://upfiles.heclouds.com/123/banner/2019/04/08/42e2c6c4dc6f06b1201a7a28e5baa339.jpg') no-repeat center"></a>
+                    <!--下面三张小图-->
+                    <ul class="information-nav-ul clearfix">
+                        {volist name="$list" id="b" key="k"}
+                            {if condition="$k<=3"}
+                            <!--循环遍历-->
+                            <a data-title="{$b.title}" href="{:url('detail')}?id={$b.id}">
+                                <li style='background: url("{$b.img[0]}") no-repeat center'>
+                                    <div class="information-nav-shadow"></div>
+                                    <div class="information-nav-bottom">
+                                        <div class="information-nav-table">
+                                            <span class="information-nav-desc"><span>{$b.title}</span></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            {/if}
+                        {/volist}
+                    </ul>
+                    <!--下面三张小图-->
+            </div>
+            <!--banner容器-->
+
+
+            <!--TAB切换-->
+            <div class="information-nav" style="text-decoration: none">
+                <div class="information-list-nav">
+                   <a style="text-decoration: none;" href="javascript:void(0)" onclick="location.reload()" id="quanbu" class="nav-item J_nav_item information-active">全部</a>
+                    <div class="information-list-nav-items">
+                        <div class="information-list-nav-items-ul" >
+                              <a style="text-decoration: none;" href="javascript:void(0)" onclick="tab(0)" id="0" class="nav-item J_nav_item">公司动态</a>
+                              <a style="text-decoration: none;" href="javascript:void(0)" onclick="tab(1)" id="1" class="nav-item J_nav_item">行业动态</a>
+                              <a style="text-decoration: none;" href="javascript:void(0)" onclick="tab(2)" id="2" class="nav-item J_nav_item">媒体动态</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--列表-->
+            <div class="information-list-box">{include file="newslist/lists"/}</div>
+
+            <!--下拉刷新-->
+            {if condition="count($list)"}
+                <div class="loading-list" style="margin-top: 0px;display: none">
+                    <div class="loader-inner ball-pulse">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <span>加载中</span>
+                </div>
+            {else/}
+                <span class="tips">暂无数据</span>
+            {/if}
+
+        </div>
+
+        <!--右侧内容-->
+        <div class="information-right">
+            <!--搜索-->
+            <div class="search-box">
+                <div class="search-input">
+                    <input type="text" id="text" placeholder="请输入搜索关键词" maxlength="30" class="search-text" onfocus="this.placeholder=''" onblur="this.placeholder='请输入搜索关键词'">
+                    <span class="search-btn"><span style="text-align: center" class="glyphicon glyphicon-search"></span></span>
+                </div>
+            </div>
+            <!--时光轴-->
+            <div class="information-news">
+                {include file="newslist/timelist"/}
+            </div>
+        </div>
+    </div>
+<!--body-->
+
+
+<!--footer-->
+{include file="common/foot"/}
+</body>
+    <script>
+        //<!--检测web 手机-->
+        $(document).ready(function() {
+            //跳转页面
+            $(window).width() <= 980?window.location.href= $("#url").val():'';
+            //去掉空格函数
+            function trim(str) {return str.replace(/(^\s*)|(\s*$)/g, "");}
+            //选定函数
+            $(".header-menu-ul-li").each(function(){
+                trim($(this).children().html())=="新闻动态"?$(".header-menu-ul-li").eq($(this).index()).children().css("color","#19bbff"):'';
+            })
+        });
+
+
+        //https://www.cnblogs.com/fxsshomepage/p/5785412.html
+        //上面是原版，马上安排简化版 解决方法就是卷起来的高度大于等于文档模块高度就弹窗 简单说滚动条的高度超过这个DIV模块的高度就可以判断了
+        //因为刷新过快ajax会重复提交 所以为了解决这个有两种解决方案
+        //1.我打算用时间函数控制，一秒才能发一次ajax这样就避免了短时间多次刷新ajajx
+        //2.变量锁 我是查百度看到的，好像是要用判断变量来限制住防止短时间多次执行ajax
+        //变量锁：https://www.jianshu.com/p/a82d7bb2933a
+        //上面是原版，马上安排简化版 解决方法就是卷起来的高度大于等于文档模块高度就弹窗 简单说滚动条的高度超过这个DIV模块的高度就可以判断了
+        var lock=false;
+        $(window).scroll(function(){
+            var gundongtiao = document.documentElement.scrollTop||document.body.scrollTop;
+            var wendang = $(".information-list-box").height();
+            if (gundongtiao>=wendang){
+                console.log($(".J_information_list").length);
+                $(".loading-list").show();
+                if (!lock){
+                    lock=true;
+                    var pid = $(".information-active").html()=='全部'?'':$(".information-active").index();
+                    $.ajax({
+                        url:"lists",
+                        type:'post',
+                        data:{limit:$(".J_information_list").length,p_id:pid},
+                        success:function (res){
+                            $(".loading-list").hide();
+                            if ($(".tips").html()!='暂无数据'){
+                                $(".information-list-box").append(res);
+                            }else{
+                                $(".no-data").show();
+                            }
+                            lock=false;
+                        }
+                    });
+                }
+            }
+        });
+
+
+        //搜索
+        $(".search-btn").click(function () {
+            $("#text").val()==''? window.location.href="/newslist/search": window.location.href="/newslist/search?title="+$("#text").val();
+        });
+
+
+        //tab切换
+        function tab(val) {
+            $("#quanbu").removeClass("information-active");
+            var indexs = $("#"+val).index();
+            $(".information-list-nav-items-ul").children().each(function () {
+                $(this).index()==indexs? $(this).addClass("information-active"):$(this).removeClass("information-active");
+            });
+            $.ajax({
+                url:"lists",
+                type:'get',
+                data:{p_id:val},
+                success:function (res){
+                    $(".information-list-box").empty();
+                    $(".information-list-box").append(res);
+                }
+            });}
+    </script>
+</html>

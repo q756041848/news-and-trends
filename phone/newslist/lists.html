@@ -1,0 +1,11 @@
+{volist name="$list" id="b"}
+<a style="color: #0a0a0a" href="{:url('detail')}?id={$b.id}">
+    <div class="list">
+        <div style="width: 50%;float: left;">
+            <span class="neirong">{$b.title}</span><br>
+            <span class="titles">{$b.detials}</span>
+        </div>
+        <div class="img"><img src="{$b.img[0]}" alt=""></div>
+    </div>
+</a>
+{/volist}

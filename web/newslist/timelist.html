@@ -1,0 +1,14 @@
+<p class="news-title">最新资讯</p>
+{volist name="$list" id="b" key="k"}
+{if condition="$k<8"}
+<a style="text-decoration: none" href="{:url('detail')}?id={$b.id}" class="news-content">
+    <i class="line"></i>
+    <p class="news-content-time">{:date('Y-m-d',$b.updatetime)}</p>
+    <p class="news-content-desc">{$b.title}</p>
+    <div class="news-content-imglist">
+        <i class="news-content-img" style="background: url('{$b.img[0]}') no-repeat center;background-size: 170px auto"></i>
+    </div>
+</a>
+{/if}
+{/volist}
+<a style="text-decoration: none" href="search" data-url="/iotbox/information/search" class="information-news-more J_information_news_more">查看更多<i class="icon-angle-down"></i></a>

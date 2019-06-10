@@ -1,0 +1,281 @@
+{include file="newslist/header"/}
+<style type="text/css">
+    /*nav*/
+    .nav{
+        opacity: 0.8;
+        width: 100%;
+        position: absolute;
+        height: 50px;
+        border-bottom: 1px solid#3d3d3d;
+        z-index: 999;
+    }
+    a.as {
+        float: left;
+        width: 30%;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+    .ab {
+        float: right;
+        position: relative;
+        top: 10px;
+        font-size: 20px;
+        color: #fff;
+        right: 10px;
+    }
+    .ab a {
+        position: relative;
+        right: 10px;
+    }
+
+    /*tab*/
+    .list1{
+        font-size: 12px;
+        color: #666;
+    }
+    .list1 ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid#ececec;
+        height: 50px;
+        width: 100%;
+    }
+    .list1 ul li{
+        float: left;
+        width: 90px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .active{
+        border-bottom: 2px solid#19bbff;
+    }
+
+    /*底部*/
+    .footer{
+        background: #0a0a0a;
+        height: 200px;
+        color: #929292;
+    }
+    .footer ul{
+        margin-top: 80px;
+        padding: 0;
+    }
+    .footer li {
+        height: 30px;
+        width: 80%;
+        margin: 0 auto;
+        list-style: none;
+        border-bottom: 1px solid#444444;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    /*Nav内容页*/
+    .list2{
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background: #222327;
+        display: none
+    }
+    .list2 ul{
+        margin: 0;
+        padding: 60px 20px 0px 0px;
+        color: #e1e1e2;
+        float: left;
+        width: 100%;
+    }
+    .list2 ul li{
+        height: 50px;
+        line-height: 50px;
+        padding-left: 10px;
+        border-bottom: 1px solid#333333;
+    }
+
+
+
+    /*Nav按钮*/
+    .btns {
+        position: absolute;
+        width: 90%;
+        bottom: 10px;
+        height: 50px;
+        left: 15px;
+    }
+    .btns span {
+        width: 150px;
+        float: left;
+        height: 35px;
+        background: #3e414e;
+        text-align: center;
+        color: #fff;
+        line-height: 35px;
+    }
+
+    /*列表*/
+    .lis{display: none}
+    .neirong{
+        width: 200px;
+        float: left;
+        font-size: 12px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+    .titles{
+        overflow: hidden;
+        padding-top: 13px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-indent:10px
+    }
+
+    .list{
+        width: 100%;
+        height: 80px;
+        border-bottom: 1px solid#e8e8e8;
+        padding-top: 7px;
+    }
+    .img{
+        width: 40%;
+        height: 50px;
+        float: right;
+    }
+    .img img{
+        width: 100%;
+        height: 100%
+    }
+</style>
+<body>
+<!--nav-->
+    <div class="nav">
+        <a href="#" class="as"><img style="width: 100%" src="https://open.iot.10086.cn/wap/web/static/img/logo.855f28a.png"></a>
+        <div class="ab">
+            <a href="#"><span class="glyphicon glyphicon-user"></span></a>
+            <span class="glyphicon glyphicon-menu-hamburger ico"></span>
+        </div>
+    </div>
+<!--nav-->
+<div class="logo">
+    <img style="width: 100%" src="https://open.iot.10086.cn/wap/web/static/img/smartrestaurant.5ae9a40.png" alt="">
+    <span class="hiden" style="position: absolute;top: 100px;z-index: 999;color: #fff;font-size: 22px;left: 10px;">新闻动态</span>
+</div>
+
+<!--list1 页面内容-->
+<div class="list1">
+    <ul class="tab">
+        <li class="tabs active">全部</li>
+        <li class="tabs">公司动态</li>
+        <li class="tabs">行业动态</li>
+        <li class="tabs">媒体动态</li>
+    </ul>
+    <p></p>
+    <div style="width: 95%;margin: 0 auto">
+        <div style="display: block" class="lis" id="con">
+            {include file="newslist/lists"/}
+        </div>
+        {if condition="count($list)"}
+            <div class="loading-list" style="margin-top: 0px;display: none">
+                <div class="loader-inner ball-pulse">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <span>加载中</span>
+            </div>
+        {else/}
+            <span class="tips">暂无数据</span>
+        {/if}
+    </div>
+</div>
+
+<!--底部-->
+<div class="footer hiden">
+    {include file="common/foot"/}
+</div>
+
+<!--点击按钮展开内容页-->
+<div class="list2">
+    {include file="common/head"/}
+</div>
+
+
+</body>
+<script>
+    //<!--检测web 手机-->
+    $(document).ready(function() {
+        if($(window).width() > 980) {
+            window.location.href= "/newslist/index";
+        }
+    });
+
+    //top按钮
+    $(".glyphicon-menu-hamburger").click(function () {
+        var ico = $(".ico");
+        if ($(".list2").css('display')=='none'){
+            $(".list2").show();
+            $(".hiden").hide();
+            ico.addClass('glyphicon-remove');ico.removeClass('glyphicon-menu-hamburger');
+        }else{
+            $(".list2").hide();
+            $(".hiden").show();
+            ico.removeClass('glyphicon-remove');ico.addClass('glyphicon-menu-hamburger');
+        }
+    })
+
+    //tab切换
+    $(".tabs").mouseover(function () {
+        $(".tabs").removeClass("active"); //全部删掉选定样式
+        $(this).addClass("active");
+        var indexs = $(this).index();
+        var pid = $(".active").html()=='全部'?'':$(".active").index()-1;
+        $.ajax({
+            url:"lists",
+            type:'get',
+            data:{p_id:pid},
+            success:function (res){
+                $("#con").empty();
+                $("#con").append(res);
+            }
+        });
+    });
+
+    //下拉刷新的另一种写法
+    //http://www.zixuephp.net/article-181.html
+    var lock=false;
+    $(window).scroll(function(){
+        var gundongtiao = document.documentElement.scrollTop||document.body.scrollTop+300;
+        var wendang = $(".lis").height();
+        if (gundongtiao>=wendang){
+            // $(".loading-list").show();
+            if (!lock) {
+                lock = true;
+                var pid = $(".active").html()=='全部'?'':$(".active").index();
+                $.ajax({
+                    url: "lists",
+                    type: 'post',
+                    data: {limit: $(".list").length, p_id:pid},
+                    success: function (res) {
+                        $(".loading-list").hide();
+                        if ($(".tips").html()!='暂无数据'){
+                            $(".lis").append(res);
+                        }
+                        lock=false;
+                    }
+                });
+            }
+        }
+    });
+
+
+</script>
+</html>

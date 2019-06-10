@@ -1,0 +1,28 @@
+{volist name="$list" id="b" key="k"}
+{if condition="$b.count<3"}
+<!--单图模式 单-->
+<a  href="{:url('detail')}?id={$b.id}"  class="information-mix J_information_list" data-url="" data-id="287" data-type="2">
+    <!--图文混合-->
+    <i class="mix-img fr" style="background: url('{$b.img[0]}') no-repeat center; background-size: 100% auto;"></i>
+    <div class="fl">
+        <p class="mix-title">{$b.title}</p>
+        <p class="mix-desc">{$b.detials}</p>
+        <p class="mix-time">{:date('Y-m-d',$b.updatetime)}</p>
+    </div>
+</a>
+
+{else/}
+
+<!--多图模式 多-->
+    <a style="text-decoration: none" href="{:url('detail')}?id={$b.id}"  class="information-images J_information_list" data-url="" data-id="268" data-type="2">
+        <!--多图-->
+        <div class=" information-images-wrap clearfix">
+            <i class="information-images-item" style="background: url('{$b.img[0]}') no-repeat center; background-size: 100% auto;"></i>
+            <i class="information-images-item" style="background: url('{$b.img[1]}') no-repeat center; background-size: 100% auto;"></i>
+            <i class="information-images-item" style="background: url('{$b.img[2]}') no-repeat center; background-size: 100% auto;"></i>
+        </div>
+        <p class="information-images-title">{$b.title}</p>
+        <p class="information-images-time">{:date('Y-m-d',$b.updatetime)}</p>
+    </a>
+{/if}
+{/volist}
